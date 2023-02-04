@@ -34,7 +34,7 @@ class ministarGanerater : MonoBehaviour
     }
     void Ganerate()
     {
-        Vector3 pos = new Vector3(SpornPosX, UnityEngine.Random.Range(MinSpornPosY, MaxSpornPosY), 0);
+        Vector3 pos = new Vector3(SpornPosX, UnityEngine.Random.Range(MinSpornPosY, MaxSpornPosY), -5);
         miniStarPool.GetGameObject(miniStarObj, pos, Quaternion.identity).GetComponent<MiniStar>().Setting(miniStarPool);
 
     }
