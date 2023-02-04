@@ -196,5 +196,5 @@ MonoBehaviour:
   PlayerLeft: 106
   PlayerDown: 107
   PlayerRight: 108
-  PlayerCycleForward: 116
-  PlayerCycleBackward: 117
+  PlayerCycleForward: 117
+  PlayerCycleBackward: 111

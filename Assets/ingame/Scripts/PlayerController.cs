@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float rootdistance = 0.2f;
     public GameObject rootroot;
     public string[] rootTags = {"Player1Root","Player2Root"};
+    public string lavaTag = "Lava";
+    public string waterTag = "Water";
     public List<GameObject> splitRoots = new List<GameObject>();
     GameObject currentroot;
     public double FPSLimit = 5.0;
@@ -36,19 +38,24 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(PlayerCycleForward)) {
             currentRootIndex+=1;
-            if(splitRoots.Count==currentRootIndex) currentRootIndex = 0;
+                Debug.Log($"Updated currentRootIndex={currentRootIndex}");
+            if(currentRootIndex>=splitRoots.Count) currentRootIndex = 0;
             currentroot.GetComponent<SpriteRenderer>().color = splittableRootColor;
             if(!splitRoots.Any(t => t == currentroot)) splitRoots.Add(currentroot);
+                Debug.Log($"Fixed currentRootIndex={currentRootIndex}");
             currentroot = splitRoots[currentRootIndex];
             currentroot.GetComponent<SpriteRenderer>().color = activeRootColor;
         }
         if (Input.GetKeyDown(PlayerCycleBackward)) {
             currentRootIndex-=1;
-            if(splitRoots.Count==-1) currentRootIndex = 0;
+                Debug.Log($"Updated currentRootIndex={currentRootIndex}");
+            if(currentRootIndex<0) currentRootIndex = splitRoots.Count-1;
             currentroot.GetComponent<SpriteRenderer>().color = splittableRootColor;
             if(!splitRoots.Any(t => t == currentroot)) splitRoots.Add(currentroot);
+                Debug.Log($"Fixed currentRootIndex={currentRootIndex}");
             currentroot = splitRoots[currentRootIndex];
             currentroot.GetComponent<SpriteRenderer>().color = activeRootColor;
         }
@@ -87,8 +94,7 @@ public class PlayerController : MonoBehaviour
             if(rootCounter%5==0) { //TODO || splitRoots.Any(t => t == currentroot)
                 currentroot.GetComponent<SpriteRenderer>().color = splittableRootColor;
                 splitRoots.Add(currentroot);
-                Debug.Log("Count:"+splitRoots.Count);
-                Console.Write("Count:"+splitRoots.Count);
+                Debug.Log($"Count={splitRoots.Count}");
             } else {
                 currentroot.GetComponent<SpriteRenderer>().color = normalRootColor;
             }
@@ -97,5 +103,21 @@ public class PlayerController : MonoBehaviour
             currentroot.GetComponent<SpriteRenderer>().color = activeRootColor;
             rootCounter+=1;
         }
+    }
+    
+    bool SpaceIsFree(Vector3 movingTo) {
+        GameObject[] roots = GameObject.FindGameObjectsWithTag(rootTags[0]).Concat(GameObject.FindGameObjectsWithTag(rootTags[1])).ToArray();
+        foreach (var root in roots)
+        {
+            var distance = (movingTo-root.transform.position).magnitude;
+            if(distance*1.5<rootdistance) return false;
+        }
+        GameObject[] lavas = GameObject.FindGameObjectsWithTag(lavaTag);
+        foreach (var lava in lavas)
+        {
+            var distance = (movingTo-lava.transform.position).magnitude;
+            if(distance*0.75<rootdistance) return false;
+        }
+        return true;
     }
 }

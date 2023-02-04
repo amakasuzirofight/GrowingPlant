@@ -11,8 +11,8 @@ public class PlayerSpawner : MonoBehaviour
     {
         var surfaceRadius = surface.transform.localScale.y/2f;
         //foreach(var player in players) //TODO rotation...
-        GameObject a = Instantiate(players[0], new Vector3(0,surfaceRadius,1), Quaternion.identity);
-        GameObject b = Instantiate(players[1], new Vector3(0,-surfaceRadius,1), Quaternion.identity);
+        GameObject a = Instantiate(players[0], new Vector3(0,surfaceRadius+players[0].transform.localScale.y*0.25f,1), Quaternion.identity);
+        GameObject b = Instantiate(players[1], new Vector3(0,-surfaceRadius-players[1].transform.localScale.y*0.25f,1), Quaternion.identity);
         a.transform.parent = surface.transform;
         b.transform.parent = surface.transform;
         b.transform.rotation = Quaternion.Euler(Vector3.forward * 180);
