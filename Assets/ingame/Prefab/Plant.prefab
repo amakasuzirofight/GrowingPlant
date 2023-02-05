@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 0.653165, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 72c055f02f675ac4d9b05ebb08f93cb6, type: 3}
+  m_Color: {r: 0.7169812, g: 0.5467156, b: 0.12445709, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -112,7 +112,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5872257522221461985}
   m_Father: {fileID: 0}
@@ -187,11 +187,13 @@ MonoBehaviour:
   rootTags:
   - Player1Root
   - Player2Root
+  lavaTag: Lava
+  waterTag: Water
   splitRoots: []
   FPSLimit: 5
-  activeRootColor: {r: 0, g: 1, b: 0, a: 1}
-  normalRootColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  splittableRootColor: {r: 1, g: 0, b: 1, a: 1}
+  activeRootRenderer: {fileID: 6046775505166516362, guid: 9fa2779d4c70dfc43979b6b947c5c55d, type: 3}
+  normalRootRenderer: {fileID: 3021069885235755759, guid: d6501aab12891304ea204c6d79a70c43, type: 3}
+  splittableRootRenderer: {fileID: 6862994072786302858, guid: 5e2b151dd3d7dd74aae5ca9b04f46ab9, type: 3}
   PlayerUp: 119
   PlayerLeft: 97
   PlayerDown: 115

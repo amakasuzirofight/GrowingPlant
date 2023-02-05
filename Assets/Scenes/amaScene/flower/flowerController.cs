@@ -45,7 +45,7 @@ public class flowerController : MonoBehaviour
             animtimeCount = 0;
             FlowerAnimCount++;
         }
-        Debug.Log(FlowerAnimCount);
+        //Debug.Log(FlowerAnimCount);
         foreach (var item in leafs)
         {
             item.GetComponent<SpriteRenderer>().sprite = leafAnims[FlowerAnimCount];
@@ -67,12 +67,12 @@ public class flowerController : MonoBehaviour
         obj.transform.parent = this.gameObject.transform;
         obj.transform.localPosition = Vector3.zero;
         obj.transform.localScale = Vector3.one;
+        obj.transform.rotation = transform.rotation;
         //それ以外のオブジェクトを上にあげる
         foreach (var item in leafs)
         {
             item.transform.localPosition = new Vector3(item.transform.localPosition.x, item.transform.localPosition.y + leafHigh, item.transform.localPosition.z);
         }
-        Debug.Log($"petal{petal.transform.localPosition.y} flower{ flowerBase.transform.localPosition.y} add{leafHigh}");
         petal.transform.localPosition = new Vector3(petal.transform.localPosition.x, petal.transform.localPosition.y + leafHigh, petal.transform.localPosition.z);
         flowerBase.transform.localPosition = new Vector3(flowerBase.transform.localPosition.x, flowerBase.transform.localPosition.y + leafHigh, flowerBase.transform.localPosition.z);
         leafs.Add(obj);

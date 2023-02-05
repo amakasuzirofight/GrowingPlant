@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 754384850920828588}
   - component: {fileID: 754384850920828591}
-  - component: {fileID: 754384850920828590}
+  - component: {fileID: 192885369293030383}
   m_Layer: 0
   m_Name: Plant2
   m_TagString: Player2Plant
@@ -109,7 +109,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754384850920828589}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
   m_LocalPosition: {x: -3, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -170,7 +170,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &754384850920828590
+--- !u!114 &192885369293030383
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,15 +183,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rootdistance: 0.2
-  rootroot: {fileID: 754384850526471455}
+  rootroot: {fileID: 5872257522221461984, guid: 56ccdb0ac361a1b55a58e9af135e4e18, type: 3}
   rootTags:
   - Player1Root
   - Player2Root
+  lavaTag: Lava
+  waterTag: Water
   splitRoots: []
   FPSLimit: 5
-  activeRootColor: {r: 0.5235849, g: 1, b: 0.5235849, a: 1}
-  normalRootColor: {r: 1, g: 0.9597835, b: 0.495283, a: 1}
-  splittableRootColor: {r: 1, g: 0.6367924, b: 1, a: 1}
+  activeRootRenderer: {fileID: 4925112710446668982, guid: b26ccce7b5073894f9047e092be27bb9, type: 3}
+  normalRootRenderer: {fileID: 1605772055046423639, guid: 5c52fcadc5776a246bcfa7d3c06f0418, type: 3}
+  splittableRootRenderer: {fileID: 658698278939391423, guid: 862114296f2926348aad929db6c1d970, type: 3}
   PlayerUp: 105
   PlayerLeft: 106
   PlayerDown: 107
