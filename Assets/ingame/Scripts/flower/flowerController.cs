@@ -15,6 +15,8 @@ public class flowerController : MonoBehaviour
     [SerializeField] float nextAnimTime;
 
     [SerializeField, Header("âËÇÃçÇÇ≥")] float leafHigh;
+    [SerializeField] AudioClip growSE;
+    AudioSource audioSource;
     int flowerAnimCount;
     int FlowerAnimCount
     {
@@ -34,7 +36,7 @@ public class flowerController : MonoBehaviour
     float animtimeCount;
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -62,6 +64,8 @@ public class flowerController : MonoBehaviour
     /// </summary>
     public void Growing()
     {
+        //audio
+        audioSource.PlayOneShot(growSE);
         //ótÇ¡Çœê∂ê¨
         var obj = Instantiate(leafObj);
         obj.transform.parent = this.gameObject.transform;
