@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviour
 {
     public GameObject[] players;
+    public List<GameObject> createPlayers = new List<GameObject>();
     public GameObject surface;
     // Start is called before the first frame update
     void Start()
@@ -19,8 +20,9 @@ public class PlayerSpawner : MonoBehaviour
             players[i].transform.rotation = q;
             Vector3 v = players[i].transform.up * (surfaceRadius+players[i].transform.localScale.y*0.25f);
             Debug.Log(v.ToString());
-            GameObject p = Instantiate(players[i], v, q);
-            p.transform.parent = surface.transform;
+
+            createPlayers.Add(Instantiate(players[i], v, q));
+            createPlayers[createPlayers.Count - 1].transform.parent = surface.transform;
         }
     }
 

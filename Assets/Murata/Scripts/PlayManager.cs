@@ -14,7 +14,7 @@ public enum PlaySceneState
 
 public class PlayManager : MonoBehaviour
 {
-    private PlaySceneState playSceneState;
+    public static PlaySceneState playSceneState = PlaySceneState.FadeIn;
 
     [SerializeField] private GameObject FadeOutPrefab;
     [SerializeField] private GameObject FadeInPrefab;
@@ -42,6 +42,17 @@ public class PlayManager : MonoBehaviour
     [SerializeField] private float PlayTime = 60.0f;
     [SerializeField] private Text timeText;
 
+    [SerializeField] private GameObject playerSpawner;
+
+    [SerializeField] private GameObject cam;
+    private float camMoveTime;
+
+    private int winer;
+
+    [SerializeField] private Text winnerText;
+
+    private List<GameObject> players;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +64,9 @@ public class PlayManager : MonoBehaviour
 
         CountUI.SetActive(false);
         resultUI.SetActive(false);
+
+        winer = 0;
+        camMoveTime = 0.0f;
     }
 
     // Update is called once per frame
@@ -95,10 +109,37 @@ public class PlayManager : MonoBehaviour
                     playSceneState = PlaySceneState.Result;
                     resultUI.SetActive(true);
                     timer = 0.0f;
+
+                    players = playerSpawner.GetComponent<PlayerSpawner>().createPlayers;
+
+                    Debug.Log(players == null);
+
+                    int max = 0;
+                    winer = 0;
+                    
+                    for(int i = 0; i< players.Count;i++)
+                    {
+                        int growth = players[i].GetComponentInChildren<PlayerController>().growth;
+
+                        if(max < growth)
+                        {
+                            max = growth;
+                            winer = i;
+                        }
+                    }
+
+                    winnerText.text = (winer + 1).ToString() + "P‚ÌŸ‚¿I";
                 }
                 break;
             case PlaySceneState.Result:
                 FrameMove();
+
+                camMoveTime += Time.deltaTime;
+
+                cam.transform.position = Vector3.Lerp(new Vector3(0.0f, 0.0f, -10.0f), 
+                    new Vector3(players[winer].transform.position.x, 
+                    players[winer].transform.position.y, -10.0f), camMoveTime);
+
 
                 if(!horizontalMove && timer > moveTime && Input.anyKey && !Input.GetMouseButton(0) && !Input.GetMouseButton(1) && !Input.GetMouseButton(2))
                 {
@@ -139,8 +180,11 @@ public class PlayManager : MonoBehaviour
 
     public void FrameMove()
     {
-        if (!horizontalMove && timer > moveTime) return;
-
+        if (!horizontalMove && timer > moveTime)
+        {
+            winnerText.gameObject.SetActive(true);
+            return;
+        }
         timer += Time.deltaTime;
         if (horizontalMove)
         {

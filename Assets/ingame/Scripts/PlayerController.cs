@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public string waterTag = "Water";
     public List<GameObject> splitRoots = new List<GameObject>();
     private GameObject currentroot;
-    private int growth = 0;
+    public int growth = 0;
     public double FPSLimit = 5.0;
     private double sinceLastFrame = 0.0;
     private int rootCounter = 0;
@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayManager.playSceneState != PlaySceneState.Playing) return;
+
         int addCount = 0;
         float angle=0;
         if (Input.GetKeyDown(PlayerCycleForward)) {

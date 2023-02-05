@@ -16,6 +16,7 @@ public class RotateGround : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayManager.playSceneState != PlaySceneState.Playing) return;
         GroundRotate();
     }
 
