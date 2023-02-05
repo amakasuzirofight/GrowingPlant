@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: fadeOut
+  serializedVersion: 6
+  m_Legacy: 0
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_EulerCurves: []
+  m_PositionCurves: []
+  m_ScaleCurves: []
+  m_FloatCurves: []
+  m_PPtrCurves:
+  - curve:
+    - time: 0
+      value: {fileID: 21300000, guid: 83d1d0d894d12644194344f6f0536703, type: 3}
+    - time: 0.083333336
+      value: {fileID: 21300000, guid: a265fad25c8fa184688386770578ea8f, type: 3}
+    - time: 0.16666667
+      value: {fileID: 21300000, guid: 632a64569b04167449bd803fca38092f, type: 3}
+    - time: 0.25
+      value: {fileID: 21300000, guid: 69345145764dcde42a3d4962189b1444, type: 3}
+    - time: 0.33333334
+      value: {fileID: 21300000, guid: 06c5643d4b5db8543924c67b8df4df13, type: 3}
+    - time: 0.41666666
+      value: {fileID: 21300000, guid: 8ee9f9fcc364eba419dab6473f909b80, type: 3}
+    - time: 0.5
+      value: {fileID: 21300000, guid: 9d2b5a5e837be484fbb5188399c16cd9, type: 3}
+    - time: 0.5833333
+      value: {fileID: 21300000, guid: e6ebe1a2a142cb14488859e90a054673, type: 3}
+    - time: 0.6666667
+      value: {fileID: 21300000, guid: 4c7220f7c2c16ee4da63a05cbf926612, type: 3}
+    - time: 0.75
+      value: {fileID: 21300000, guid: eb4825f157b0a6d45887d877a157be9d, type: 3}
+    - time: 0.8333333
+      value: {fileID: 21300000, guid: 2ed2c2614162d8c499a218a7fbd596ee, type: 3}
+    - time: 0.9166667
+      value: {fileID: 21300000, guid: 285bd60362a60404082b336897e4c55f, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: 7dca13f6cf6d9ff4198d107b487aa151, type: 3}
+    - time: 1.0833334
+      value: {fileID: 21300000, guid: 053ff83dc90aafa4dad964f8584edc12, type: 3}
+    attribute: m_Sprite
+    path: 
+    classID: 212
+    script: {fileID: 0}
+  m_SampleRate: 12
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_ClipBindingConstant:
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    pptrCurveMapping:
+    - {fileID: 21300000, guid: 83d1d0d894d12644194344f6f0536703, type: 3}
+    - {fileID: 21300000, guid: a265fad25c8fa184688386770578ea8f, type: 3}
+    - {fileID: 21300000, guid: 632a64569b04167449bd803fca38092f, type: 3}
+    - {fileID: 21300000, guid: 69345145764dcde42a3d4962189b1444, type: 3}
+    - {fileID: 21300000, guid: 06c5643d4b5db8543924c67b8df4df13, type: 3}
+    - {fileID: 21300000, guid: 8ee9f9fcc364eba419dab6473f909b80, type: 3}
+    - {fileID: 21300000, guid: 9d2b5a5e837be484fbb5188399c16cd9, type: 3}
+    - {fileID: 21300000, guid: e6ebe1a2a142cb14488859e90a054673, type: 3}
+    - {fileID: 21300000, guid: 4c7220f7c2c16ee4da63a05cbf926612, type: 3}
+    - {fileID: 21300000, guid: eb4825f157b0a6d45887d877a157be9d, type: 3}
+    - {fileID: 21300000, guid: 2ed2c2614162d8c499a218a7fbd596ee, type: 3}
+    - {fileID: 21300000, guid: 285bd60362a60404082b336897e4c55f, type: 3}
+    - {fileID: 21300000, guid: 7dca13f6cf6d9ff4198d107b487aa151, type: 3}
+    - {fileID: 21300000, guid: 053ff83dc90aafa4dad964f8584edc12, type: 3}
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_AdditiveReferencePoseClip: {fileID: 0}
+    m_AdditiveReferencePoseTime: 0
+    m_StartTime: 0
+    m_StopTime: 1.1666667
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_HasAdditiveReferencePose: 0
+    m_LoopTime: 0
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves: []
+  m_EulerEditorCurves: []
+  m_HasGenericRootTransform: 0
+  m_HasMotionFloatCurves: 0
+  m_Events:
+  - time: 1.1666666
+    functionName: SceneChange
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
