@@ -23,10 +23,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] SpriteRenderer activeRootRenderer;
     [SerializeField] SpriteRenderer normalRootRenderer;
     [SerializeField] SpriteRenderer splittableRootRenderer;
+    [SerializeField] AudioClip hitwater;
+    AudioSource audioSource;
     public KeyConfig keys;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         currentroot = rootroot;
         splitRoots.Add(rootroot);
     }
@@ -134,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
     void SearchAndDestroyWater(Vector3 movingTo) {
         GameObject[] waters = GameObject.FindGameObjectsWithTag(waterTag);
-
+        audioSource.PlayOneShot(hitwater);
         foreach (var water in waters)
         {
             var distance = (movingTo-water.transform.position).magnitude;
