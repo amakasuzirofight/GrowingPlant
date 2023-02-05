@@ -306,6 +306,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 224496796923390774}
     m_Modifications:
+    - target: {fileID: 5872257522221461984, guid: 56ccdb0ac361a1b55a58e9af135e4e18, type: 3}
+      propertyPath: m_TagString
+      value: root
+      objectReference: {fileID: 0}
     - target: {fileID: 5872257523360882660, guid: 56ccdb0ac361a1b55a58e9af135e4e18, type: 3}
       propertyPath: m_Name
       value: Plant
@@ -324,7 +328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5872257523360882661, guid: 56ccdb0ac361a1b55a58e9af135e4e18, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5872257523360882661, guid: 56ccdb0ac361a1b55a58e9af135e4e18, type: 3}
       propertyPath: m_LocalRotation.w

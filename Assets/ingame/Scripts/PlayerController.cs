@@ -151,7 +151,8 @@ public class PlayerController : MonoBehaviour
         {
             var distance = (movingTo-water.transform.position).magnitude;
             if(distance<water.transform.localScale.y*15) {
-                growth += 1;
+                transform.parent.GetComponent<flowerController>().Growing();
+                growth+=1;
                 Destroy(water);
             }
         }
