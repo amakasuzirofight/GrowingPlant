@@ -455,9 +455,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5872257523360882662, guid: 56ccdb0ac361a1b55a58e9af135e4e18, type: 3}
+      propertyPath: keys
+      value: 
+      objectReference: {fileID: 5742042733584484954}
     m_RemovedComponents:
     - {fileID: 5872257523360882663, guid: 56ccdb0ac361a1b55a58e9af135e4e18, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 56ccdb0ac361a1b55a58e9af135e4e18, type: 3}
+--- !u!1 &2830450636928276416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5872257523360882660, guid: 56ccdb0ac361a1b55a58e9af135e4e18, type: 3}
+  m_PrefabInstance: {fileID: 8519038913282115620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5742042733584484954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2830450636928276416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb62692aaa3162d186739eab36bf922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerUp: 119
+  PlayerLeft: 97
+  PlayerDown: 115
+  PlayerRight: 100
+  PlayerCycleForward: 113
+  PlayerCycleBackward: 101
 --- !u!4 &2830450636928276417 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5872257523360882661, guid: 56ccdb0ac361a1b55a58e9af135e4e18, type: 3}
