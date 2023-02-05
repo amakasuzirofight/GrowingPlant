@@ -7,6 +7,7 @@ public class PlayerSpawner : MonoBehaviour
 {
     public GameObject[] players;
     public List<GameObject> createPlayers = new List<GameObject>();
+
     public GameObject surface;
     // Start is called before the first frame update
     void Start()

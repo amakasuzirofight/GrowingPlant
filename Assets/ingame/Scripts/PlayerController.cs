@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 {
     public float rootdistance = 0.2f;
     public GameObject rootroot;
-    public string[] rootTags = {"Player1Root","Player2Root"};
+    public string rootTag = "root";
     public string lavaTag = "Lava";
     public string waterTag = "Water";
     public List<GameObject> splitRoots = new List<GameObject>();
@@ -23,18 +23,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] SpriteRenderer activeRootRenderer;
     [SerializeField] SpriteRenderer normalRootRenderer;
     [SerializeField] SpriteRenderer splittableRootRenderer;
-    //public Color activeRootColor = Color.green;
-    //public Color normalRootColor = Color.yellow;
-    //public Color splittableRootColor = Color.magenta;
-    public KeyCode PlayerUp = KeyCode.W;
-    public KeyCode PlayerLeft = KeyCode.A;
-    public KeyCode PlayerDown = KeyCode.S;
-    public KeyCode PlayerRight = KeyCode.D;
-    public KeyCode PlayerCycleForward = KeyCode.Q;
-    public KeyCode PlayerCycleBackward = KeyCode.E;
+    [SerializeField] AudioClip hitwater;
+    AudioSource audioSource;
+    public KeyConfig keys;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         currentroot = rootroot;
         splitRoots.Add(rootroot);
     }
@@ -46,32 +41,24 @@ public class PlayerController : MonoBehaviour
 
         int addCount = 0;
         float angle=0;
-        if (Input.GetKeyDown(PlayerCycleForward)) {
+        if (Input.GetKeyDown(keys.PlayerCycleForward)) {
             currentRootIndex+=1;
-                Debug.Log($"Updated currentRootIndex={currentRootIndex}");
             if(currentRootIndex>=splitRoots.Count) currentRootIndex = 0;
-            //currentroot.GetComponent<SpriteRenderer>().color = splittableRootColor;
             currentroot.GetComponent<SpriteRenderer>().sprite = splittableRootRenderer.sprite;
             currentroot.GetComponent<SpriteRenderer>().color = splittableRootRenderer.color;
             if (!splitRoots.Any(t => t == currentroot)) splitRoots.Add(currentroot);
-                Debug.Log($"Fixed currentRootIndex={currentRootIndex}");
             currentroot = splitRoots[currentRootIndex];
-            //currentroot.GetComponent<SpriteRenderer>().color = activeRootColor;
             currentroot.GetComponent<SpriteRenderer>().sprite = activeRootRenderer.sprite;
             currentroot.GetComponent<SpriteRenderer>().color = activeRootRenderer.color;
         }
-        if (Input.GetKeyDown(PlayerCycleBackward)) {
+        if (Input.GetKeyDown(keys.PlayerCycleBackward)) {
             currentRootIndex-=1;
-                Debug.Log($"Updated currentRootIndex={currentRootIndex}");
             if(currentRootIndex<0) currentRootIndex = splitRoots.Count-1;
-            //currentroot.GetComponent<SpriteRenderer>().color = splittableRootColor;
             currentroot.GetComponent<SpriteRenderer>().sprite = splittableRootRenderer.sprite;
             currentroot.GetComponent<SpriteRenderer>().color = splittableRootRenderer.color;
 
             if (!splitRoots.Any(t => t == currentroot)) splitRoots.Add(currentroot);
-                Debug.Log($"Fixed currentRootIndex={currentRootIndex}");
             currentroot = splitRoots[currentRootIndex];
-            //currentroot.GetComponent<SpriteRenderer>().color = activeRootColor;
             currentroot.GetComponent<SpriteRenderer>().sprite = activeRootRenderer.sprite;
             currentroot.GetComponent<SpriteRenderer>().color = activeRootRenderer.color;
         }
@@ -82,22 +69,22 @@ public class PlayerController : MonoBehaviour
         }
         sinceLastFrame = 0;
         Vector3 direction = new Vector3(0,0,0);
-        if (Input.GetKey(PlayerUp)) {
+        if (Input.GetKey(keys.PlayerUp)) {
             direction.y += rootdistance;
             angle = 90;
             addCount++;
         }
-        if (Input.GetKey(PlayerLeft)) {
+        if (Input.GetKey(keys.PlayerLeft)) {
             direction.x -= rootdistance;
             angle = 180;
             addCount++;
         }
-        if (Input.GetKey(PlayerDown)) {
+        if (Input.GetKey(keys.PlayerDown)) {
             direction.y -= rootdistance;
             angle = 270;
             addCount++;
         }
-        if (Input.GetKey(PlayerRight)) {
+        if (Input.GetKey(keys.PlayerRight)) {
             direction.x += rootdistance;
             angle = 0;
             addCount++;
@@ -108,7 +95,6 @@ public class PlayerController : MonoBehaviour
                 direction.x = System.Math.Sign(direction.x)*bidirectionalDistance;
                 direction.y = System.Math.Sign(direction.y)*bidirectionalDistance;
             }
-            GameObject[] roots = GameObject.FindGameObjectsWithTag(rootTags[0]).Concat(GameObject.FindGameObjectsWithTag(rootTags[1])).ToArray();
             Vector3 movingTo = currentroot.transform.position+direction;
             if (!SpaceIsFree(movingTo)) return;
             SearchAndDestroyWater(movingTo);
@@ -131,7 +117,7 @@ public class PlayerController : MonoBehaviour
     }
     
     bool SpaceIsFree(Vector3 movingTo) {
-        GameObject[] roots = GameObject.FindGameObjectsWithTag(rootTags[0]).Concat(GameObject.FindGameObjectsWithTag(rootTags[1])).ToArray();
+        GameObject[] roots = GameObject.FindGameObjectsWithTag(rootTag);
         foreach (var root in roots)
         {
             var distance = (movingTo-root.transform.position).magnitude;
@@ -148,7 +134,7 @@ public class PlayerController : MonoBehaviour
 
     void SearchAndDestroyWater(Vector3 movingTo) {
         GameObject[] waters = GameObject.FindGameObjectsWithTag(waterTag);
-
+        audioSource.PlayOneShot(hitwater);
         foreach (var water in waters)
         {
             var distance = (movingTo-water.transform.position).magnitude;
