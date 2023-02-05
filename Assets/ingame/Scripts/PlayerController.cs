@@ -86,11 +86,7 @@ public class PlayerController : MonoBehaviour
             }
             GameObject[] roots = GameObject.FindGameObjectsWithTag(rootTags[0]).Concat(GameObject.FindGameObjectsWithTag(rootTags[1])).ToArray();
             Vector3 movingTo = currentroot.transform.position+direction;
-            foreach (var root in roots)
-            {
-                var distance = (movingTo-root.transform.position).magnitude;
-                if(distance*1.5<rootdistance) return;
-            }
+            if (!SpaceIsFree(movingTo)) return;
             if(rootCounter%5==0) { //TODO || splitRoots.Any(t => t == currentroot)
                 currentroot.GetComponent<SpriteRenderer>().color = splittableRootColor;
                 splitRoots.Add(currentroot);
@@ -116,7 +112,8 @@ public class PlayerController : MonoBehaviour
         foreach (var lava in lavas)
         {
             var distance = (movingTo-lava.transform.position).magnitude;
-            if(distance*0.75<rootdistance) return false;
+            Debug.Log(lava.transform.localScale.ToString());
+            if(distance<lava.transform.localScale.y*15) return false;
         }
         return true;
     }
