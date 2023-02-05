@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour
+public class FadeOut : MonoBehaviour
 {
     private string nextScene = "";
 
@@ -12,7 +12,7 @@ public class SceneChanger : MonoBehaviour
         nextScene = name;
     }
 
-    void SceneChange()
+    void FadeOutFinish()
     {
         SceneManager.LoadScene(nextScene);
     }
