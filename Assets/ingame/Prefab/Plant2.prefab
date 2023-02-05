@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 754384850920828589}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: -3, y: 0, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 754384850526471454}
@@ -187,11 +187,13 @@ MonoBehaviour:
   rootTags:
   - Player1Root
   - Player2Root
+  lavaTag: Lava
+  waterTag: Water
   splitRoots: []
   FPSLimit: 5
-  activeRootColor: {r: 0.5235849, g: 1, b: 0.5235849, a: 1}
-  normalRootColor: {r: 1, g: 0.9597835, b: 0.495283, a: 1}
-  splittableRootColor: {r: 1, g: 0.6367924, b: 1, a: 1}
+  activeRootRenderer: {fileID: 4925112710446668982, guid: b26ccce7b5073894f9047e092be27bb9, type: 3}
+  normalRootRenderer: {fileID: 1605772055046423639, guid: 5c52fcadc5776a246bcfa7d3c06f0418, type: 3}
+  splittableRootRenderer: {fileID: 658698278939391423, guid: 862114296f2926348aad929db6c1d970, type: 3}
   PlayerUp: 105
   PlayerLeft: 106
   PlayerDown: 107

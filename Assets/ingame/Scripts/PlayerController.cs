@@ -19,9 +19,12 @@ public class PlayerController : MonoBehaviour
     private double sinceLastFrame = 0.0;
     private int rootCounter = 0;
     private int currentRootIndex = 0;
-    public Color activeRootColor = Color.green;
-    public Color normalRootColor = Color.yellow;
-    public Color splittableRootColor = Color.magenta;
+    [SerializeField] SpriteRenderer activeRootRenderer;
+    [SerializeField] SpriteRenderer normalRootRenderer;
+    [SerializeField] SpriteRenderer splittableRootRenderer;
+    //public Color activeRootColor = Color.green;
+    //public Color normalRootColor = Color.yellow;
+    //public Color splittableRootColor = Color.magenta;
     public KeyCode PlayerUp = KeyCode.W;
     public KeyCode PlayerLeft = KeyCode.A;
     public KeyCode PlayerDown = KeyCode.S;
@@ -38,26 +41,36 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        int addCount = 0;
+        float angle=0;
         if (Input.GetKeyDown(PlayerCycleForward)) {
             currentRootIndex+=1;
                 Debug.Log($"Updated currentRootIndex={currentRootIndex}");
             if(currentRootIndex>=splitRoots.Count) currentRootIndex = 0;
-            currentroot.GetComponent<SpriteRenderer>().color = splittableRootColor;
-            if(!splitRoots.Any(t => t == currentroot)) splitRoots.Add(currentroot);
+            //currentroot.GetComponent<SpriteRenderer>().color = splittableRootColor;
+            currentroot.GetComponent<SpriteRenderer>().sprite = splittableRootRenderer.sprite;
+            currentroot.GetComponent<SpriteRenderer>().color = splittableRootRenderer.color;
+            if (!splitRoots.Any(t => t == currentroot)) splitRoots.Add(currentroot);
                 Debug.Log($"Fixed currentRootIndex={currentRootIndex}");
             currentroot = splitRoots[currentRootIndex];
-            currentroot.GetComponent<SpriteRenderer>().color = activeRootColor;
+            //currentroot.GetComponent<SpriteRenderer>().color = activeRootColor;
+            currentroot.GetComponent<SpriteRenderer>().sprite = activeRootRenderer.sprite;
+            currentroot.GetComponent<SpriteRenderer>().color = activeRootRenderer.color;
         }
         if (Input.GetKeyDown(PlayerCycleBackward)) {
             currentRootIndex-=1;
                 Debug.Log($"Updated currentRootIndex={currentRootIndex}");
             if(currentRootIndex<0) currentRootIndex = splitRoots.Count-1;
-            currentroot.GetComponent<SpriteRenderer>().color = splittableRootColor;
-            if(!splitRoots.Any(t => t == currentroot)) splitRoots.Add(currentroot);
+            //currentroot.GetComponent<SpriteRenderer>().color = splittableRootColor;
+            currentroot.GetComponent<SpriteRenderer>().sprite = splittableRootRenderer.sprite;
+            currentroot.GetComponent<SpriteRenderer>().color = splittableRootRenderer.color;
+
+            if (!splitRoots.Any(t => t == currentroot)) splitRoots.Add(currentroot);
                 Debug.Log($"Fixed currentRootIndex={currentRootIndex}");
             currentroot = splitRoots[currentRootIndex];
-            currentroot.GetComponent<SpriteRenderer>().color = activeRootColor;
+            //currentroot.GetComponent<SpriteRenderer>().color = activeRootColor;
+            currentroot.GetComponent<SpriteRenderer>().sprite = activeRootRenderer.sprite;
+            currentroot.GetComponent<SpriteRenderer>().color = activeRootRenderer.color;
         }
         // If returning to node, process swap and return TODO
         if(sinceLastFrame<(1.0/FPSLimit)) {
@@ -68,15 +81,23 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = new Vector3(0,0,0);
         if (Input.GetKey(PlayerUp)) {
             direction.y += rootdistance;
+            angle = 90;
+            addCount++;
         }
         if (Input.GetKey(PlayerLeft)) {
             direction.x -= rootdistance;
+            angle = 180;
+            addCount++;
         }
         if (Input.GetKey(PlayerDown)) {
             direction.y -= rootdistance;
+            angle = 270;
+            addCount++;
         }
         if (Input.GetKey(PlayerRight)) {
             direction.x += rootdistance;
+            angle = 0;
+            addCount++;
         }
         if (direction.x != 0 || direction.y != 0) {
             if (direction.x != 0 && direction.y != 0) {
@@ -92,15 +113,19 @@ public class PlayerController : MonoBehaviour
                 if(distance*1.5<rootdistance) return;
             }
             if(rootCounter%5==0) { //TODO || splitRoots.Any(t => t == currentroot)
-                currentroot.GetComponent<SpriteRenderer>().color = splittableRootColor;
+                currentroot.GetComponent<SpriteRenderer>().sprite=splittableRootRenderer.sprite;
+                currentroot.GetComponent<SpriteRenderer>().color = splittableRootRenderer.color;
                 splitRoots.Add(currentroot);
-                Debug.Log($"Count={splitRoots.Count}");
             } else {
-                currentroot.GetComponent<SpriteRenderer>().color = normalRootColor;
+                //currentroot.GetComponent<SpriteRenderer>().color = normalRootColor;
+                currentroot.GetComponent<SpriteRenderer>().sprite = normalRootRenderer.sprite;
+                currentroot.GetComponent<SpriteRenderer>().color = normalRootRenderer.color;
             }
-            currentroot = Instantiate(currentroot, currentroot.transform.position+direction, Quaternion.identity, this.transform);
+            currentroot = Instantiate(currentroot, currentroot.transform.position+direction, Quaternion.AngleAxis(angle==0?angle:angle/addCount, new Vector3(0.0f, 0.0f, 1.0f)), this.transform);
             currentroot.name = "root"+rootCounter;
-            currentroot.GetComponent<SpriteRenderer>().color = activeRootColor;
+            //currentroot.GetComponent<SpriteRenderer>().color = activeRootColor;
+            currentroot.GetComponent<SpriteRenderer>().color = activeRootRenderer.color;
+            currentroot.GetComponent<SpriteRenderer>().sprite = activeRootRenderer.sprite;
             rootCounter+=1;
         }
     }
