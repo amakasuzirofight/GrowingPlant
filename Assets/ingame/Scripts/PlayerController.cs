@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     public string lavaTag = "Lava";
     public string waterTag = "Water";
     public List<GameObject> splitRoots = new List<GameObject>();
-    GameObject currentroot;
+    private GameObject currentroot;
+    private int growth = 0;
     public double FPSLimit = 5.0;
     private double sinceLastFrame = 0.0;
     private int rootCounter = 0;
@@ -108,6 +109,7 @@ public class PlayerController : MonoBehaviour
             GameObject[] roots = GameObject.FindGameObjectsWithTag(rootTags[0]).Concat(GameObject.FindGameObjectsWithTag(rootTags[1])).ToArray();
             Vector3 movingTo = currentroot.transform.position+direction;
             if (!SpaceIsFree(movingTo)) return;
+            SearchAndDestroyWater(movingTo);
             if(rootCounter%5==0) { //TODO || splitRoots.Any(t => t == currentroot)
                 currentroot.GetComponent<SpriteRenderer>().sprite=splittableRootRenderer.sprite;
                 currentroot.GetComponent<SpriteRenderer>().color = splittableRootRenderer.color;
@@ -137,9 +139,21 @@ public class PlayerController : MonoBehaviour
         foreach (var lava in lavas)
         {
             var distance = (movingTo-lava.transform.position).magnitude;
-            Debug.Log(lava.transform.localScale.ToString());
             if(distance<lava.transform.localScale.y*15) return false;
         }
         return true;
+    }
+
+    void SearchAndDestroyWater(Vector3 movingTo) {
+        GameObject[] waters = GameObject.FindGameObjectsWithTag(waterTag);
+
+        foreach (var water in waters)
+        {
+            var distance = (movingTo-water.transform.position).magnitude;
+            if(distance<water.transform.localScale.y*15) {
+                growth += 1;
+                Destroy(water);
+            }
+        }
     }
 }
