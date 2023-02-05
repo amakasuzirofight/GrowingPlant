@@ -150,6 +150,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1334a3659fc3f59498e1c673f7365fcc, type: 3}
   nextAnimTime: 0.6
   leafHigh: 0.7
+
   growSE: {fileID: 8300000, guid: 1d0054c78aa4a874eabedb12d359a834, type: 3}
 --- !u!82 &-3488287367220141902
 AudioSource:
