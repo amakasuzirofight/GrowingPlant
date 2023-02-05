@@ -23,16 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] SpriteRenderer activeRootRenderer;
     [SerializeField] SpriteRenderer normalRootRenderer;
     [SerializeField] SpriteRenderer splittableRootRenderer;
-    //public Color activeRootColor = Color.green;
-    //public Color normalRootColor = Color.yellow;
-    //public Color splittableRootColor = Color.magenta;
     public KeyConfig keys;
-    public KeyCode PlayerUp = KeyCode.W;
-    public KeyCode PlayerLeft = KeyCode.A;
-    public KeyCode PlayerDown = KeyCode.S;
-    public KeyCode PlayerRight = KeyCode.D;
-    public KeyCode PlayerCycleForward = KeyCode.Q;
-    public KeyCode PlayerCycleBackward = KeyCode.E;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,9 +34,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+        {
+            if (Input.GetKey(kcode))
+                Debug.Log("KeyCode down: " + kcode);
+        }
         int addCount = 0;
         float angle=0;
-        if (Input.GetKeyDown(PlayerCycleForward)) {
+        if (Input.GetKeyDown(keys.PlayerCycleForward)) {
             currentRootIndex+=1;
             if(currentRootIndex>=splitRoots.Count) currentRootIndex = 0;
             currentroot.GetComponent<SpriteRenderer>().sprite = splittableRootRenderer.sprite;
@@ -55,7 +51,7 @@ public class PlayerController : MonoBehaviour
             currentroot.GetComponent<SpriteRenderer>().sprite = activeRootRenderer.sprite;
             currentroot.GetComponent<SpriteRenderer>().color = activeRootRenderer.color;
         }
-        if (Input.GetKeyDown(PlayerCycleBackward)) {
+        if (Input.GetKeyDown(keys.PlayerCycleBackward)) {
             currentRootIndex-=1;
             if(currentRootIndex<0) currentRootIndex = splitRoots.Count-1;
             currentroot.GetComponent<SpriteRenderer>().sprite = splittableRootRenderer.sprite;

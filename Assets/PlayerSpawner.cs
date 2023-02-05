@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviour
 {
     public GameObject[] players;
+    public int playerCount = 2;
     public GameObject surface;
     // Start is called before the first frame update
     void Start()
