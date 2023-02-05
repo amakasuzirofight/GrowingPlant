@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 using UnityEngine;
 class WinEffectController:MonoBehaviour
 {
-    //[SerializeField] 
+    //[SerializeField] GameObjec
 }
